@@ -19,15 +19,23 @@ public class Lista implements Listable, Serializable {
     private Nodo fin;
     private Nodo actual;
 
+    /**
+     * Verifica si la lista esta vacia
+     */
     @Override
     public boolean esVacia() {
         return inicio == null && fin == null && actual == null;
 
     }
 
+    /**
+     * Añade un nuevo elemento a la lista
+     *
+     * @param elemento elemento que se desea añadir
+     */
     @Override
     public void añadir(Object elemento) {
-       
+
         inicio = new Nodo(inicio, elemento);
         actual = inicio;
         if (inicio.getSiguiente() == null) {
@@ -39,11 +47,22 @@ public class Lista implements Listable, Serializable {
         System.out.println(elemento);
     }
 
+    /**
+     * Localiza un elemento en la lista
+     *
+     * @param elemento que se dea encontrar
+     * @return devuelve un elemento ubicado en la lista
+     *
+     */
     @Override
     public int localizar(Object elemento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
+     /** Elimina un elemento de la lista
+     *
+     * @param elemento elemento que se desea eliminar
+     */
 
     @Override
     public void eliminar(Object elemento) {
@@ -60,6 +79,14 @@ public class Lista implements Listable, Serializable {
 
     }
 
+    
+    /**
+     * Verifica si la lista contiene un elemento
+     *
+     * @param elemento elemento que desea verificar
+     * @return true si lo encuentra, false de lo contrario.
+     */
+
     @Override
     public boolean contiene(Object elemento) {
 
@@ -70,6 +97,12 @@ public class Lista implements Listable, Serializable {
         return posicion != null;
     }
 
+       /**
+     * Remplaza un elemento en la lista
+     *
+     * @param actual elemento actual que desea remplazar
+     * @param nuevo nuevo elemento a remplazar
+     */
     @Override
     public void sustituir(Object actual, Object nuevo) {
         Nodo posicion = inicio;
@@ -83,6 +116,11 @@ public class Lista implements Listable, Serializable {
         }
     }
 
+     /**
+     * Iterador de la clase
+     *
+     * @return iterador
+     */
     @Override
     public Iterator iterador() {
         return new MiIterador();
@@ -101,10 +139,18 @@ public class Lista implements Listable, Serializable {
 
         private Nodo posicion = inicio;
 
+        /**
+         * Verifica que el nodo tenga siguiente
+         * @return false de lo contrario
+         */
         public boolean hasNext() {
             return posicion != null;
         }
 
+        /**
+         * Obtiene el siguiente elemento
+         * @return 
+         */
         public Object next() {
             if (hasNext()) {
                 Object o = posicion.getElemento();
@@ -114,6 +160,9 @@ public class Lista implements Listable, Serializable {
             return null;
         }
 
+        /**
+         * Elimina
+         */
         public void remove() {
             throw new IllegalStateException();
         }

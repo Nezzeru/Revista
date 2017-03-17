@@ -7,12 +7,13 @@ package View;
 
 import Controller.Articulo;
 import Controller.Lista;
+import java.io.Serializable;
 
 /**
  *
  * @author teodora
  */
-public class UI extends javax.swing.JFrame {
+public class UI extends javax.swing.JFrame implements Serializable{
 
     /**
      * Creates new form UI
