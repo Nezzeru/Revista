@@ -7,6 +7,7 @@ package View;
 
 import Controller.Articulo;
 import Controller.Lista;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -41,9 +42,9 @@ public class UI extends javax.swing.JFrame {
         guardar = new javax.swing.JButton();
         siguiente = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
-        categoria = new javax.swing.JComboBox<>();
         Categoria = new javax.swing.JLabel();
         imgBack = new javax.swing.JPanel();
+        tagCate = new javax.swing.JComboBox<>();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,35 +131,21 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Politica", "Economia", "Deportes", "Tecnologia", "Cotidiano", "Belleza", " " }));
-        categoria.addActionListener(new java.awt.event.ActionListener() {
+        Categoria.setText("Categoria");
+
+        imgBack.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        imgBack.setLayout(new java.awt.GridLayout(1, 1));
+
+        tagCate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "politica", "tech", "deportes", "" }));
+        tagCate.setSelectedIndex(3);
+        tagCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoriaActionPerformed(evt);
+                tagCateActionPerformed(evt);
             }
         });
 
-        Categoria.setText("Categoria");
-
-        imgBack.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
         img.setText(" ");
-
-        javax.swing.GroupLayout imgBackLayout = new javax.swing.GroupLayout(imgBack);
-        imgBack.setLayout(imgBackLayout);
-        imgBackLayout.setHorizontalGroup(
-            imgBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imgBackLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(img)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        imgBackLayout.setVerticalGroup(
-            imgBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imgBackLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(img)
-                .addContainerGap(212, Short.MAX_VALUE))
-        );
+        img.setBorder(javax.swing.BorderFactory.createTitledBorder("Autor"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,12 +156,16 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(categoria, javax.swing.GroupLayout.Alignment.TRAILING, 0, 201, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Categoria)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(imgBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tagCate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(imgBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -184,12 +175,18 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imgBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imgBack, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(Categoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tagCate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88))
         );
 
@@ -198,6 +195,7 @@ public class UI extends javax.swing.JFrame {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         save();
+
 
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -225,9 +223,9 @@ public class UI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_nuevoActionPerformed
 
-    private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
+    private void tagCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tagCateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoriaActionPerformed
+    }//GEN-LAST:event_tagCateActionPerformed
 
     public void dibujar() {
 
@@ -241,13 +239,43 @@ public class UI extends javax.swing.JFrame {
     }
 
     public void save() {
+
         Articulo nuevo = new Articulo(titulo.getText(), cuerpo.getText());
         titulo.setEditable(false);
         cuerpo.setEditable(false);
         revista.añadir(nuevo);
         background.revalidate();
-
         background.repaint();
+
+        switch (tagCate.getSelectedIndex()) {
+
+            case 0:
+                img.setIcon(new javax.swing.ImageIcon(getClass().getResource(politica)));
+                imgBack.revalidate();
+                imgBack.repaint();
+                nuevo.setRuta(politica);
+                break;
+
+            case 1:
+                img.setIcon(new javax.swing.ImageIcon(getClass().getResource(tech)));
+                imgBack.revalidate();
+                imgBack.repaint();
+                nuevo.setRuta(tech);
+                break;
+
+            case 2:
+                img.setIcon(new javax.swing.ImageIcon(getClass().getResource(deportes)));
+                imgBack.revalidate();
+                imgBack.repaint();
+                nuevo.setRuta(deportes);
+                break;
+
+            default:
+                break;
+        }
+
+        System.out.println(nuevo.getCuerpo());
+
     }
 
     /**
@@ -286,12 +314,14 @@ public class UI extends javax.swing.JFrame {
     }
     Articulo predeterminado = new Articulo("Tu madre", "mundo");
     Lista revista = new Lista();
+    String politica = "/Resources/img03.png";
+    String tech = "/Resources/img04.png";
+    String deportes = "/Resources/img05.png";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Categoria;
     private javax.swing.JButton anterior;
     private javax.swing.JPanel background;
-    private javax.swing.JComboBox<String> categoria;
     private javax.swing.JTextPane cuerpo;
     private javax.swing.JButton editar;
     private javax.swing.JButton guardar;
@@ -301,6 +331,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton nuevo;
     private javax.swing.JButton siguiente;
+    private javax.swing.JComboBox<String> tagCate;
     private javax.swing.JTextPane titulo;
     // End of variables declaration//GEN-END:variables
 }
