@@ -27,16 +27,16 @@ public class Lista implements Listable, Serializable {
 
     @Override
     public void añadir(Object elemento) {
-        if (!esVacia()) {
-            inicio = new Nodo(inicio, elemento);
-            actual = inicio;
-            if (inicio.getSiguiente() == null) {
-                fin = inicio;
-            } else {
-                inicio.getSiguiente().setAnterior(inicio);
-            }
+       
+        inicio = new Nodo(inicio, elemento);
+        actual = inicio;
+        if (inicio.getSiguiente() == null) {
+            fin = inicio;
+        } else {
+            inicio.getSiguiente().setAnterior(inicio);
         }
 
+        System.out.println(elemento);
     }
 
     @Override
@@ -84,40 +84,38 @@ public class Lista implements Listable, Serializable {
     }
 
     @Override
-    public Iterator contador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterator iterador() {
+        return new MiIterador();
     }
 
-    @Override
-    public void vaciar() {
-        inicio = null;
-        fin = null;
-        actual = null;
+    public void circular() {
+        fin.setSiguiente(inicio);
+        inicio.setSiguiente(fin);
+
     }
 
-    @Override
-    public boolean haySiguiente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /*
+   * Clase privada que implementa el iterador
+     */
+    private class MiIterador implements java.util.Iterator {
 
-    private class contador implements java.util.Iterator {
+        private Nodo posicion = inicio;
 
-        Nodo posicion = actual;
-
-        @Override
         public boolean hasNext() {
-            return !posicion.getSiguiente().equals(null);
+            return posicion != null;
         }
 
-        @Override
         public Object next() {
             if (hasNext()) {
-                Object elemento = posicion.getElemento();
+                Object o = posicion.getElemento();
                 posicion = posicion.getSiguiente();
-                return elemento;
+                return o;
             }
             return null;
         }
-    }
 
+        public void remove() {
+            throw new IllegalStateException();
+        }
+    }
 }

@@ -60,8 +60,7 @@ public interface Listable {
      *
      * @return iterador
      */
-    public java.util.Iterator contador();
-    public boolean haySiguiente();
-    public void vaciar();
+    public java.util.Iterator iterador();
+    
 
 }
