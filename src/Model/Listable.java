@@ -19,14 +19,14 @@ public interface Listable {
     /**
      * Añade un nuevo elemento a la lista
      */
-    public void añadir();
+    public void añadir(Object elemento);
 
     /**
      * Localiza un elemento en la lista
      *
      * @return devuelve un elemento ubicado en la lista
      */
-    public int localizar();
+    public int localizar(Object elemento);
 
     /**
      * Elimina un elemento de la lista
@@ -59,5 +59,7 @@ public interface Listable {
      * @return iterador
      */
     public java.util.Iterator contador();
+    public boolean haySiguiente();
+    public void vaciar();
 
 }

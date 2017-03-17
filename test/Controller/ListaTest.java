@@ -59,7 +59,8 @@ public class ListaTest {
     public void testAñadir() {
         System.out.println("a\u00f1adir");
         Lista instance = new Lista();
-        instance.añadir();
+        Object elemento = "Hola mundo";
+        instance.añadir(elemento);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -69,13 +70,7 @@ public class ListaTest {
      */
     @Test
     public void testLocalizar() {
-        System.out.println("localizar");
-        Lista instance = new Lista();
-        int expResult = 0;
-        int result = instance.localizar();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -129,6 +124,32 @@ public class ListaTest {
         Lista instance = new Lista();
         Iterator expResult = null;
         Iterator result = instance.contador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of vaciar method, of class Lista.
+     */
+    @Test
+    public void testVaciar() {
+        System.out.println("vaciar");
+        Lista instance = new Lista();
+        instance.vaciar();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of haySiguiente method, of class Lista.
+     */
+    @Test
+    public void testHaySiguiente() {
+        System.out.println("haySiguiente");
+        Lista instance = new Lista();
+        boolean expResult = false;
+        boolean result = instance.haySiguiente();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
