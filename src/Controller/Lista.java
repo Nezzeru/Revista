@@ -14,17 +14,17 @@ import java.util.Iterator;
  * @author teodora
  */
 public class Lista implements Listable, Serializable {
-    
+
     private Nodo inicio;
     private Nodo fin;
     private Nodo actual;
-    
+
     @Override
     public boolean esVacia() {
         return inicio == null && fin == null && actual == null;
-        
+
     }
-    
+
     @Override
     public void añadir(Object elemento) {
         if (!esVacia()) {
@@ -36,30 +36,40 @@ public class Lista implements Listable, Serializable {
                 inicio.getSiguiente().setAnterior(inicio);
             }
         }
-        
+
     }
-    
+
     @Override
     public int localizar(Object elemento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
-    
+
     @Override
     public void eliminar(Object elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Nodo posicion = inicio;
+        while (posicion != null && !posicion.getElemento().equals(elemento)) {
+            posicion = posicion.getSiguiente();
+
+        }
+
+        if (posicion != null) {
+            posicion.setElemento(null);
+
+        }
+
     }
-    
+
     @Override
     public boolean contiene(Object elemento) {
-        
+
         Nodo posicion = null;
-        while (posicion != null && !posicion.getElemento().equals(elemento)) {            
+        while (posicion != null && !posicion.getElemento().equals(elemento)) {
             posicion.getSiguiente();
         }
         return posicion != null;
     }
-    
+
     @Override
     public void sustituir(Object actual, Object nuevo) {
         Nodo posicion = inicio;
@@ -72,12 +82,12 @@ public class Lista implements Listable, Serializable {
             }
         }
     }
-    
+
     @Override
     public Iterator contador() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void vaciar() {
         inicio = null;
@@ -89,21 +99,25 @@ public class Lista implements Listable, Serializable {
     public boolean haySiguiente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    private class contador  implements java.util.Iterator {
+
+    private class contador implements java.util.Iterator {
+
         Nodo posicion = actual;
-        
+
         @Override
         public boolean hasNext() {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-                   }
+            return !posicion.getSiguiente().equals(null);
+        }
 
         @Override
         public Object next() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (hasNext()) {
+                Object elemento = posicion.getElemento();
+                posicion = posicion.getSiguiente();
+                return elemento;
+            }
+            return null;
         }
     }
-    
-    
+
 }

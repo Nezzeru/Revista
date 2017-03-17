@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author teodora
@@ -34,7 +36,7 @@ public interface Listable {
      * @param elemento elemento que se desea eliminar
      */
 
-    public void eliminar(Object elemento);
+    public void eliminar(Object elemento) ;
 
     /**
      * Verifica si la lista contiene un elemento
