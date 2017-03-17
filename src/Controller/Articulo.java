@@ -5,11 +5,14 @@
  */
 package Controller;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author teodora
  */
 public class Articulo {
+
     private String titulo;
     private String cuerpo;
     private String ruta;
@@ -41,9 +44,11 @@ public class Articulo {
     public Articulo(String titulo, String cuerpo) {
         this.titulo = titulo;
         this.cuerpo = cuerpo;
-        ruta = null;
+       ruta = null;
+       
+        
     }
-    
-    
-    
+
+   
+
 }

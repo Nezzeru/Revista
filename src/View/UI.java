@@ -7,7 +7,6 @@ package View;
 
 import Controller.Articulo;
 import Controller.Lista;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -181,8 +180,8 @@ public class UI extends javax.swing.JFrame {
                         .addComponent(imgBack, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(Categoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,6 +194,7 @@ public class UI extends javax.swing.JFrame {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         save();
+        guardar.setVisible(false);
 
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -211,15 +211,18 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_editarActionPerformed
 
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
+
         dibujar();
     }//GEN-LAST:event_siguienteActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        // TODO add your handling code here:
         limpiar();
         titulo.setEditable(true);
         cuerpo.setEditable(true);
-
+        guardar.setVisible(true);
+        img.setIcon(null);
+        imgBack.revalidate();
+        imgBack.repaint();
 
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -228,9 +231,25 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_tagCateActionPerformed
 
     public void dibujar() {
-
+        
+        
         Articulo y = (Articulo) revista.iterador().next();
+        titulo.setText(y.getTitulo());
+        cuerpo.setText(y.getCuerpo());
+        if (y.getRuta() != null) {
+            img.setIcon(new javax.swing.ImageIcon(getClass().getResource(y.getRuta())));
+            revista.añadir(y);
+            imgBack.revalidate();
+            imgBack.repaint();
 
+        }
+   
+        background.revalidate();
+        background.repaint();
+        System.out.println("________________________________________-");
+        System.out.println(y.getTitulo());
+        System.out.println(y.getCuerpo());
+        System.out.println("Al pelo");
     }
 
     public void limpiar() {
