@@ -76,11 +76,11 @@ public class UI extends javax.swing.JFrame implements Serializable {
         background.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
 
         titulo.setEditable(false);
-        titulo.setFont(new java.awt.Font("Mukti Narrow", 1, 12)); // NOI18N
+        titulo.setFont(new java.awt.Font("Mukti Narrow", 1, 14)); // NOI18N
         jScrollPane1.setViewportView(titulo);
 
         cuerpo.setEditable(false);
-        cuerpo.setFont(new java.awt.Font("malayalam", 0, 14)); // NOI18N
+        cuerpo.setFont(new java.awt.Font("MalOtf", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(cuerpo);
 
         editar.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
@@ -137,6 +137,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
             }
         });
 
+        Eliminar.setFont(new java.awt.Font("Mukti Narrow", 1, 13)); // NOI18N
         Eliminar.setText("Eliminar");
         Eliminar.setPreferredSize(new java.awt.Dimension(98, 37));
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
