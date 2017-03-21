@@ -18,6 +18,7 @@ public class Lista implements Listable, Serializable {
     private Nodo inicio;
     private Nodo fin;
     private Nodo actual;
+    private int contador = 0;
 
     /**
      * Verifica si la lista esta vacia
@@ -44,7 +45,8 @@ public class Lista implements Listable, Serializable {
             inicio.getSiguiente().setAnterior(inicio);
         }
 
-        System.out.println(elemento);
+        contador++;
+        inicio.setPosicion(contador);
     }
 
     /**
@@ -56,15 +58,70 @@ public class Lista implements Listable, Serializable {
      */
     @Override
     public int localizar(Object elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int posicion = contador;
+
+        if (!esVacia() && !inicio.getElemento().equals(elemento)) {
+            inicio = inicio.getSiguiente();
+        }
+        return inicio.getPosicion();
+    }
+
+    /**
+     * Elimina un elemento de la lista
+     *
+     * @param posicion
+     * @param elemento elemento que se desea eliminar
+     * @return
+     */
+    public Object localizarPosicion(int posicion) throws NullPointerException {
+
+        if (!esVacia()) {
+            while (inicio.getElemento() != null && inicio.getPosicion() != posicion) {
+                inicio = inicio.getSiguiente();
+            }
+            return inicio.getElemento();
+        } else {
+            throw new NullPointerException("No se ha encontrado el articulo");
+        }
+    }
+
+    public void setAnterior() {
+        if (actual != null) {
+            if (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
+            }
+
+            if (fin.getSiguiente() == null) {
+                fin.setSiguiente(inicio);
+               
+            }
+        }
+    }
+
+    public void setSiguiente() {
+        if (actual != null) {
+            if (actual.getAnterior() != null) {
+                actual = actual.getAnterior();
+            }
+            if (inicio.getAnterior() == null) {
+                inicio.setAnterior(fin);
+            }
+        }
+    }
+
+    public int posicionActual() {
+        if (esVacia()) {
+            return 0;
+        }
+        return actual.getPosicion();
+    }
+
+    public Object elementoActual() {
+
+        return actual.getElemento();
 
     }
-     /** Elimina un elemento de la lista
-     *
-     * @param elemento elemento que se desea eliminar
-     */
 
-    @Override
     public void eliminar(Object elemento) {
         Nodo posicion = inicio;
         while (posicion != null && !posicion.getElemento().equals(elemento)) {
@@ -79,14 +136,12 @@ public class Lista implements Listable, Serializable {
 
     }
 
-    
     /**
      * Verifica si la lista contiene un elemento
      *
      * @param elemento elemento que desea verificar
      * @return true si lo encuentra, false de lo contrario.
      */
-
     @Override
     public boolean contiene(Object elemento) {
 
@@ -97,7 +152,7 @@ public class Lista implements Listable, Serializable {
         return posicion != null;
     }
 
-       /**
+    /**
      * Remplaza un elemento en la lista
      *
      * @param actual elemento actual que desea remplazar
@@ -116,19 +171,15 @@ public class Lista implements Listable, Serializable {
         }
     }
 
-     /**
+    /**
      * Iterador de la clase
      *
      * @return iterador
      */
     @Override
+
     public Iterator iterador() {
         return new MiIterador();
-    }
-
-    public void circular() {
-        fin.setSiguiente(inicio);
-        inicio.setSiguiente(fin);
 
     }
 
@@ -139,8 +190,14 @@ public class Lista implements Listable, Serializable {
 
         private Nodo posicion = inicio;
 
+        public Nodo getPosicion() {
+            return posicion;
+
+        }
+
         /**
          * Verifica que el nodo tenga siguiente
+         *
          * @return false de lo contrario
          */
         public boolean hasNext() {
@@ -148,13 +205,21 @@ public class Lista implements Listable, Serializable {
         }
 
         /**
-         * Obtiene el siguiente elemento
-         * @return 
+         * Obtiene el elemento anterior
+         *
+         * @return
          */
+        /**
+         * Obtiene el siguiente elemento
+         *
+         * @return
+         */
+        @Override
         public Object next() {
             if (hasNext()) {
                 Object o = posicion.getElemento();
                 posicion = posicion.getSiguiente();
+
                 return o;
             }
             return null;
@@ -163,8 +228,14 @@ public class Lista implements Listable, Serializable {
         /**
          * Elimina
          */
-        public void remove() {
-            throw new IllegalStateException();
+        public Object last() {
+            if (hasNext()) {
+                Object o = posicion.getAnterior();
+                posicion = posicion.getAnterior();
+
+                return o;
+            }
+            return null;
         }
     }
 }

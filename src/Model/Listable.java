@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.Nodo;
 import java.io.FileNotFoundException;
 
 /**
@@ -54,6 +55,9 @@ public interface Listable {
      * @param nuevo nuevo elemento a remplazar
      */
     public void sustituir(Object actual, Object nuevo);
+    
+    
+  
 
     /**
      * Iterador de la clase

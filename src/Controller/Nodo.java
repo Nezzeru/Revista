@@ -2,9 +2,18 @@ package Controller;
 
 public class Nodo {
 
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
     private Nodo siguiente;
     private Object elemento;
     private Nodo anterior;
+    private int posicion = 0;
 
     /**
      * @return the siguiente

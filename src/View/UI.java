@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * @author teodora
  */
-public class UI extends javax.swing.JFrame implements Serializable{
+public class UI extends javax.swing.JFrame implements Serializable {
 
     /**
      * Creates new form UI
@@ -37,11 +37,11 @@ public class UI extends javax.swing.JFrame implements Serializable{
         titulo = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         cuerpo = new javax.swing.JTextPane();
-        anterior = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
-        siguiente = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
+        Anterior = new javax.swing.JButton();
+        Siguiente = new javax.swing.JButton();
         Categoria = new javax.swing.JLabel();
         imgBack = new javax.swing.JPanel();
         tagCate = new javax.swing.JComboBox<>();
@@ -58,8 +58,6 @@ public class UI extends javax.swing.JFrame implements Serializable{
         cuerpo.setEditable(false);
         jScrollPane2.setViewportView(cuerpo);
 
-        anterior.setText("Anterior");
-
         editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,17 +72,24 @@ public class UI extends javax.swing.JFrame implements Serializable{
             }
         });
 
-        siguiente.setText("Siguiente");
-        siguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siguienteActionPerformed(evt);
-            }
-        });
-
         nuevo.setText("Nuevo");
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
+            }
+        });
+
+        Anterior.setText("Anterior");
+        Anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnteriorActionPerformed(evt);
+            }
+        });
+
+        Siguiente.setText("Siguiente");
+        Siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SiguienteActionPerformed(evt);
             }
         });
 
@@ -99,11 +104,11 @@ public class UI extends javax.swing.JFrame implements Serializable{
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(46, 46, 46)
+                        .addComponent(Anterior)
+                        .addGap(40, 40, 40)
+                        .addComponent(Siguiente)
+                        .addGap(18, 18, 18)
                         .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
@@ -121,11 +126,11 @@ public class UI extends javax.swing.JFrame implements Serializable{
                 .addGap(18, 18, 18)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nuevo))
+                        .addComponent(nuevo)
+                        .addComponent(Siguiente))
                     .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(editar)
-                        .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Anterior)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(guardar)
                 .addContainerGap())
@@ -163,8 +168,8 @@ public class UI extends javax.swing.JFrame implements Serializable{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tagCate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imgBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -182,7 +187,7 @@ public class UI extends javax.swing.JFrame implements Serializable{
                         .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(Categoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,6 +201,8 @@ public class UI extends javax.swing.JFrame implements Serializable{
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         save();
         guardar.setVisible(false);
+        System.out.println("Guardado");
+        posicion++;
 
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -210,11 +217,6 @@ public class UI extends javax.swing.JFrame implements Serializable{
 
 
     }//GEN-LAST:event_editarActionPerformed
-
-    private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
-
-        dibujar();
-    }//GEN-LAST:event_siguienteActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         limpiar();
@@ -231,31 +233,20 @@ public class UI extends javax.swing.JFrame implements Serializable{
         // TODO add your handling code here:
     }//GEN-LAST:event_tagCateActionPerformed
 
-    public void dibujar() {
-        
-        
-        Articulo y = (Articulo) revista.iterador().next();
-        titulo.setText(y.getTitulo());
-        cuerpo.setText(y.getCuerpo());
-        if (y.getRuta() != null) {
-            img.setIcon(new javax.swing.ImageIcon(getClass().getResource(y.getRuta())));
-            revista.añadir(y);
-            imgBack.revalidate();
-            imgBack.repaint();
+    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
+    
+        dibujarSiguiente();
+    }//GEN-LAST:event_SiguienteActionPerformed
 
-        }
-   
-        background.revalidate();
-        background.repaint();
-        System.out.println("________________________________________-");
-        System.out.println(y.getTitulo());
-        System.out.println(y.getCuerpo());
-        System.out.println("Al pelo");
-    }
+    private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
+        posicion--;
+        dibujarAnterior();
+    }//GEN-LAST:event_AnteriorActionPerformed
 
     public void limpiar() {
         titulo.setText("");
         cuerpo.setText("");
+        tagCate.setSelectedIndex(3);
     }
 
     public void save() {
@@ -298,6 +289,75 @@ public class UI extends javax.swing.JFrame implements Serializable{
 
     }
 
+    public void dibujarSiguiente() {
+        revista.setSiguiente();
+        Articulo siguiente = (Articulo) revista.elementoActual();
+        titulo.setText(siguiente.getTitulo());
+        cuerpo.setText(siguiente.getCuerpo());
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource(siguiente.getRuta())));
+        imgBack.revalidate();
+        imgBack.repaint();
+        background.revalidate();
+        background.repaint();
+        
+        
+//        if (posicion > 0) {
+//
+//            Articulo siguiente = (Articulo) revista.localizarPosicion(posicion);
+//
+//            titulo.setText(siguiente.getTitulo());
+//            cuerpo.setText(siguiente.getCuerpo());
+//            img.setIcon(new javax.swing.ImageIcon(getClass().getResource(siguiente.getRuta())));
+//            imgBack.revalidate();
+//            imgBack.repaint();
+//
+//            background.revalidate();
+//            background.repaint();
+
+    }
+
+    public void dibujarAnterior() throws NullPointerException {
+        revista.setAnterior();
+        Articulo anterior = (Articulo) revista.elementoActual();
+        titulo.setText(anterior.getTitulo());
+        cuerpo.setText(anterior.getCuerpo());
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource(anterior.getRuta())));
+        imgBack.revalidate();
+        imgBack.repaint();
+        background.revalidate();
+        background.repaint();
+
+//        Articulo anterior = (Articulo) revista.localizarPosicion(posicion);
+//
+//        if (posicion > 0) {
+//
+//            if (anterior != null) {
+//                titulo.setText(anterior.getTitulo());
+//                cuerpo.setText(anterior.getCuerpo());
+//                img.setIcon(new javax.swing.ImageIcon(getClass().getResource(anterior.getRuta())));
+//                imgBack.revalidate();
+//                imgBack.repaint();
+//
+//                background.revalidate();
+//                background.repaint();
+//
+//                if (posicion < 0 || anterior == null) {
+//                    System.out.println("Es el primero");
+//                    anterior = (Articulo) revista.localizarPosicion(1);
+//                    cuerpo.setText(anterior.getCuerpo());
+//                    img.setIcon(new javax.swing.ImageIcon(getClass().getResource(anterior.getRuta())));
+//                    imgBack.revalidate();
+//                    imgBack.repaint();
+//
+//                    background.revalidate();
+//                    background.repaint();
+//                }
+//            } else {
+//                throw new NullPointerException("No se encontro el articulo o este es el primer articulo");
+//            }
+//        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -332,15 +392,18 @@ public class UI extends javax.swing.JFrame implements Serializable{
             }
         });
     }
-    Articulo predeterminado = new Articulo("Tu madre", "mundo");
+
     Lista revista = new Lista();
+    Articulo predeterminado = new Articulo("", "");
     String politica = "/Resources/img03.png";
     String tech = "/Resources/img04.png";
     String deportes = "/Resources/img05.png";
+    int posicion = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Anterior;
     private javax.swing.JLabel Categoria;
-    private javax.swing.JButton anterior;
+    private javax.swing.JButton Siguiente;
     private javax.swing.JPanel background;
     private javax.swing.JTextPane cuerpo;
     private javax.swing.JButton editar;
@@ -350,7 +413,6 @@ public class UI extends javax.swing.JFrame implements Serializable{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton nuevo;
-    private javax.swing.JButton siguiente;
     private javax.swing.JComboBox<String> tagCate;
     private javax.swing.JTextPane titulo;
     // End of variables declaration//GEN-END:variables
