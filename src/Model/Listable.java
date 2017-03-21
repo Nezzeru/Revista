@@ -15,18 +15,21 @@ import java.io.FileNotFoundException;
 public interface Listable {
 
     /**
-     * Verifica si la lista esta vacia
+     * Verifica que la lista esta vacia
+     * @return true si esta vacia, false de lo contrario
      */
     public boolean esVacia();
 
     /**
-     * Añade un nuevo elemento a la lista
+     * Añade un elemento a la lista
+     * @param elemento elemento que se desea añadir
      */
     public void añadir(Object elemento);
 
     /**
      * Localiza un elemento en la lista
      *
+     * @param elemento elemento que se desea localizar
      * @return devuelve un elemento ubicado en la lista
      */
     public int localizar(Object elemento);
@@ -36,8 +39,7 @@ public interface Listable {
      *
      * @param elemento elemento que se desea eliminar
      */
-
-    public void eliminar(Object elemento) ;
+    public void eliminar(Object elemento);
 
     /**
      * Verifica si la lista contiene un elemento
@@ -45,7 +47,6 @@ public interface Listable {
      * @param elemento elemento que desea verificar
      * @return true si lo encuentra, false de lo contrario.
      */
-
     public boolean contiene(Object elemento);
 
     /**
@@ -55,9 +56,6 @@ public interface Listable {
      * @param nuevo nuevo elemento a remplazar
      */
     public void sustituir(Object actual, Object nuevo);
-    
-    
-  
 
     /**
      * Iterador de la clase
@@ -65,6 +63,5 @@ public interface Listable {
      * @return iterador
      */
     public java.util.Iterator iterador();
-    
 
 }

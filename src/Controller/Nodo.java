@@ -64,8 +64,8 @@ public class Nodo {
     }
 
     /**
-     * @param siguiente
-     * @param elemento
+     * @param siguiente nodo siguiente
+     * @param elemento elemento que apunta el nodo
      */
     public Nodo(Nodo siguiente, Object elemento) {
         this.siguiente = siguiente;

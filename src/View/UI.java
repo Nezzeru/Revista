@@ -21,6 +21,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
     public UI() {
         initComponents();
         guardar.setVisible(false);
+        Sobreescribir.setVisible(false);
     }
 
     /**
@@ -42,54 +43,79 @@ public class UI extends javax.swing.JFrame implements Serializable {
         nuevo = new javax.swing.JButton();
         Anterior = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
+        Sobreescribir = new javax.swing.JButton();
         Categoria = new javax.swing.JLabel();
         imgBack = new javax.swing.JPanel();
         tagCate = new javax.swing.JComboBox<>();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darcula.selection.color1"));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setIconImages(null);
         setResizable(false);
 
-        background.setBorder(javax.swing.BorderFactory.createTitledBorder("Revista"));
+        background.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Revista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Mukti Narrow", 1, 14))); // NOI18N
+        background.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
 
         titulo.setEditable(false);
         jScrollPane1.setViewportView(titulo);
 
         cuerpo.setEditable(false);
+        cuerpo.setFont(new java.awt.Font("malayalam", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(cuerpo);
 
+        editar.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         editar.setText("Editar");
+        editar.setPreferredSize(new java.awt.Dimension(98, 37));
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
             }
         });
 
+        guardar.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         guardar.setText("Guardar");
+        guardar.setPreferredSize(new java.awt.Dimension(98, 37));
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
 
+        nuevo.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         nuevo.setText("Nuevo");
+        nuevo.setPreferredSize(new java.awt.Dimension(98, 37));
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoActionPerformed(evt);
             }
         });
 
+        Anterior.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         Anterior.setText("Anterior");
+        Anterior.setPreferredSize(new java.awt.Dimension(98, 37));
         Anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnteriorActionPerformed(evt);
             }
         });
 
+        Siguiente.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         Siguiente.setText("Siguiente");
+        Siguiente.setPreferredSize(new java.awt.Dimension(98, 37));
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SiguienteActionPerformed(evt);
+            }
+        });
+
+        Sobreescribir.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
+        Sobreescribir.setText("Sobreescribir");
+        Sobreescribir.setPreferredSize(new java.awt.Dimension(98, 37));
+        Sobreescribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SobreescribirActionPerformed(evt);
             }
         });
 
@@ -98,23 +124,26 @@ public class UI extends javax.swing.JFrame implements Serializable {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(Anterior)
-                        .addGap(40, 40, 40)
-                        .addComponent(Siguiente)
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Anterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Sobreescribir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Siguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
                         .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(202, 202, 202))
+                .addGap(27, 27, 27))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,19 +152,20 @@ public class UI extends javax.swing.JFrame implements Serializable {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(nuevo)
-                        .addComponent(Siguiente))
-                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(editar)
-                        .addComponent(Anterior)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Anterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(guardar)
-                .addContainerGap())
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Sobreescribir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9))
         );
 
+        Categoria.setFont(new java.awt.Font("Mukti Narrow", 1, 14)); // NOI18N
         Categoria.setText("Categoria");
 
         imgBack.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -149,8 +179,9 @@ public class UI extends javax.swing.JFrame implements Serializable {
             }
         });
 
+        img.setFont(new java.awt.Font("Mukti Narrow", 1, 12)); // NOI18N
         img.setText(" ");
-        img.setBorder(javax.swing.BorderFactory.createTitledBorder("Autor"));
+        img.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Autor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Mukti Narrow", 3, 14))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,8 +241,8 @@ public class UI extends javax.swing.JFrame implements Serializable {
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         titulo.setEditable(true);
         cuerpo.setEditable(true);
-        guardar.setVisible(true);
 
+        Sobreescribir.setVisible(true);
         background.revalidate();
         background.repaint();
 
@@ -234,14 +265,25 @@ public class UI extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_tagCateActionPerformed
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-    
+
         dibujarSiguiente();
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
-        posicion--;
+
         dibujarAnterior();
     }//GEN-LAST:event_AnteriorActionPerformed
+
+    private void SobreescribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreescribirActionPerformed
+        sobreEscribir();
+        Sobreescribir.setVisible(false);
+    }//GEN-LAST:event_SobreescribirActionPerformed
+
+    public void sobreEscribir() {
+        Articulo actual = (Articulo) revista.elementoActual();
+        Articulo nuevo = new Articulo(titulo.getText(), cuerpo.getText());
+        revista.sustituir(actual, nuevo);
+    }
 
     public void limpiar() {
         titulo.setText("");
@@ -299,8 +341,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
         imgBack.repaint();
         background.revalidate();
         background.repaint();
-        
-        
+
 //        if (posicion > 0) {
 //
 //            Articulo siguiente = (Articulo) revista.localizarPosicion(posicion);
@@ -313,7 +354,6 @@ public class UI extends javax.swing.JFrame implements Serializable {
 //
 //            background.revalidate();
 //            background.repaint();
-
     }
 
     public void dibujarAnterior() throws NullPointerException {
@@ -404,6 +444,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
     private javax.swing.JButton Anterior;
     private javax.swing.JLabel Categoria;
     private javax.swing.JButton Siguiente;
+    private javax.swing.JButton Sobreescribir;
     private javax.swing.JPanel background;
     private javax.swing.JTextPane cuerpo;
     private javax.swing.JButton editar;

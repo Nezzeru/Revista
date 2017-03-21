@@ -67,11 +67,10 @@ public class Lista implements Listable, Serializable {
     }
 
     /**
-     * Elimina un elemento de la lista
-     *
-     * @param posicion
-     * @param elemento elemento que se desea eliminar
-     * @return
+     * Localiza un elemento en la lista
+     * @param posicion posicion del elemento
+     * @return posicion
+     * @throws NullPointerException excepcion vacia
      */
     public Object localizarPosicion(int posicion) throws NullPointerException {
 
@@ -85,6 +84,9 @@ public class Lista implements Listable, Serializable {
         }
     }
 
+    /**
+     * Asigna el Nodo anterior como actual
+     */
     public void setAnterior() {
         if (actual != null) {
             if (actual.getSiguiente() != null) {
@@ -97,7 +99,9 @@ public class Lista implements Listable, Serializable {
             }
         }
     }
-
+/**
+ * Asigna el nodo siguiente como actual
+ */
     public void setSiguiente() {
         if (actual != null) {
             if (actual.getAnterior() != null) {
@@ -108,7 +112,10 @@ public class Lista implements Listable, Serializable {
             }
         }
     }
-
+/**
+ * Devuelve la posicion actual del nodo
+ * @return posicion del nodo que desea encontrar
+ */
     public int posicionActual() {
         if (esVacia()) {
             return 0;
@@ -121,7 +128,10 @@ public class Lista implements Listable, Serializable {
         return actual.getElemento();
 
     }
-
+/**
+ * Elimina un elemento del nodo
+ * @param elemento elemento a eliminar
+ */
     public void eliminar(Object elemento) {
         Nodo posicion = inicio;
         while (posicion != null && !posicion.getElemento().equals(elemento)) {
