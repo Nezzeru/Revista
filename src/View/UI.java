@@ -7,7 +7,15 @@ package View;
 
 import Controller.Articulo;
 import Controller.Lista;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,9 +27,12 @@ public class UI extends javax.swing.JFrame implements Serializable {
      * Creates new form UI
      */
     public UI() {
+
         initComponents();
         guardar.setVisible(false);
         Sobreescribir.setVisible(false);
+        leer();
+        System.out.println("Hola");
     }
 
     /**
@@ -44,6 +55,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
         Anterior = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
         Sobreescribir = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         Categoria = new javax.swing.JLabel();
         imgBack = new javax.swing.JPanel();
         tagCate = new javax.swing.JComboBox<>();
@@ -54,6 +66,11 @@ public class UI extends javax.swing.JFrame implements Serializable {
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImages(null);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         background.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Revista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Mukti Narrow", 1, 14))); // NOI18N
         background.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
@@ -120,6 +137,14 @@ public class UI extends javax.swing.JFrame implements Serializable {
             }
         });
 
+        Eliminar.setText("Eliminar");
+        Eliminar.setPreferredSize(new java.awt.Dimension(98, 37));
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
@@ -133,12 +158,14 @@ public class UI extends javax.swing.JFrame implements Serializable {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Anterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Sobreescribir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Siguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,7 +188,9 @@ public class UI extends javax.swing.JFrame implements Serializable {
                     .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Sobreescribir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Sobreescribir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9))
         );
@@ -265,7 +294,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
         // TODO add your handling code here:
     }//GEN-LAST:event_tagCateActionPerformed
 
-    
+
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
 
         dibujarSiguiente();
@@ -281,6 +310,19 @@ public class UI extends javax.swing.JFrame implements Serializable {
         Sobreescribir.setVisible(false);
     }//GEN-LAST:event_SobreescribirActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            guardar();
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        revista.eliminar(revista.elementoActual());
+        limpiar();
+    }//GEN-LAST:event_EliminarActionPerformed
+
     public void sobreEscribir() {
         Articulo actual = (Articulo) revista.elementoActual();
         Articulo nuevo = new Articulo(titulo.getText(), cuerpo.getText());
@@ -291,10 +333,13 @@ public class UI extends javax.swing.JFrame implements Serializable {
         titulo.setText("");
         cuerpo.setText("");
         tagCate.setSelectedIndex(3);
+        img.setIcon(null);
+        imgBack.revalidate();
+        imgBack.repaint();
     }
-    
+
     /**
-     
+     *
      */
     public void save() {
 
@@ -329,9 +374,13 @@ public class UI extends javax.swing.JFrame implements Serializable {
                 break;
 
             default:
+                img.setIcon(new javax.swing.ImageIcon(getClass().getResource(nada)));
+                imgBack.revalidate();
+                imgBack.repaint();
+                nuevo.setRuta(nada);
                 break;
         }
-
+        System.out.println(nuevo.getTitulo());
         System.out.println(nuevo.getCuerpo());
 
     }
@@ -366,7 +415,9 @@ public class UI extends javax.swing.JFrame implements Serializable {
         Articulo anterior = (Articulo) revista.elementoActual();
         titulo.setText(anterior.getTitulo());
         cuerpo.setText(anterior.getCuerpo());
+
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource(anterior.getRuta())));
+
         imgBack.revalidate();
         imgBack.repaint();
         background.revalidate();
@@ -401,6 +452,31 @@ public class UI extends javax.swing.JFrame implements Serializable {
 //                throw new NullPointerException("No se encontro el articulo o este es el primer articulo");
 //            }
 //        }
+    }
+
+    private void guardar() throws FileNotFoundException {
+
+        try (FileOutputStream fos = new FileOutputStream("revista.obj")) {
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(revista);
+            oos.close();
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void leer() {
+        try {
+            FileInputStream fis = new FileInputStream("revista.obj");
+            ObjectInputStream salida = new ObjectInputStream(fis);
+            revista = (Lista) salida.readObject();
+            fis.close();
+            salida.close();
+
+        } catch (IOException | ClassNotFoundException e) {
+        }
+
     }
 
     /**
@@ -443,11 +519,13 @@ public class UI extends javax.swing.JFrame implements Serializable {
     String politica = "/Resources/img03.png";
     String tech = "/Resources/img04.png";
     String deportes = "/Resources/img05.png";
+    String nada = "/Resources/img06.png";
     int posicion = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Anterior;
     private javax.swing.JLabel Categoria;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton Siguiente;
     private javax.swing.JButton Sobreescribir;
     private javax.swing.JPanel background;

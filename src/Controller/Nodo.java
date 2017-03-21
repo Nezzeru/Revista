@@ -1,11 +1,13 @@
 package Controller;
 
+import java.io.Serializable;
+
 /**
  * Clase esencial para el nodo
  *
  * @author teodora
  */
-public class Nodo {
+public class Nodo implements  Serializable{
 
     private Nodo siguiente;
     private Object elemento;

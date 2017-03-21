@@ -3,11 +3,13 @@
  */
 package Controller;
 
+import java.io.Serializable;
+
 /**
  * Controlador de los articulos
  * @author teodora
  */
-public class Articulo {
+public class Articulo implements Serializable{
 
     private String titulo;
     private String cuerpo;
