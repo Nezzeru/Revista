@@ -168,6 +168,9 @@
             <Component class="javax.swing.JTextPane" name="titulo">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Mukti Narrow" size="12" style="1"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

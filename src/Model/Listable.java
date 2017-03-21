@@ -9,7 +9,7 @@ import Controller.Nodo;
 import java.io.FileNotFoundException;
 
 /**
- *
+ * Modelo de la lista
  * @author teodora
  */
 public interface Listable {

@@ -1,14 +1,11 @@
 package Controller;
 
+/**
+ * Clase esencial para el nodo
+ *
+ * @author teodora
+ */
 public class Nodo {
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
-    }
 
     private Nodo siguiente;
     private Object elemento;
@@ -16,6 +13,26 @@ public class Nodo {
     private int posicion = 0;
 
     /**
+     * Deviele la posicion del nodo
+     *
+     * @return posicion del nodo
+     */
+    public int getPosicion() {
+        return posicion;
+    }
+
+    /**
+     * Asigna la posicion del nodos
+     *
+     * @param posicion posicion a asignar
+     */
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
+    /**
+     * Obtiene el siguiente nodo
+     *
      * @return the siguiente
      */
     public Nodo getSiguiente() {
@@ -23,6 +40,8 @@ public class Nodo {
     }
 
     /**
+     * Asigna el siguiente nodo
+     *
      * @param siguiente the siguiente to set
      */
     public void setSiguiente(Nodo siguiente) {
@@ -30,13 +49,17 @@ public class Nodo {
     }
 
     /**
-     * @return the elemento
+     * Obtiene el elemento del nodo
+     *
+     * @return the elemento2
      */
     public Object getElemento() {
         return elemento;
     }
 
     /**
+     * Asigna el elemento del nodo
+     *
      * @param elemento the elemento to set
      */
     public void setElemento(Object elemento) {
@@ -64,6 +87,8 @@ public class Nodo {
     }
 
     /**
+     * Constructor de los nodos
+     *
      * @param siguiente nodo siguiente
      * @param elemento elemento que apunta el nodo
      */
@@ -71,7 +96,5 @@ public class Nodo {
         this.siguiente = siguiente;
         this.elemento = elemento;
     }
-
-  
 
 }

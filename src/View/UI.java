@@ -59,6 +59,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
         background.setFont(new java.awt.Font("Hack", 0, 14)); // NOI18N
 
         titulo.setEditable(false);
+        titulo.setFont(new java.awt.Font("Mukti Narrow", 1, 12)); // NOI18N
         jScrollPane1.setViewportView(titulo);
 
         cuerpo.setEditable(false);
@@ -264,6 +265,7 @@ public class UI extends javax.swing.JFrame implements Serializable {
         // TODO add your handling code here:
     }//GEN-LAST:event_tagCateActionPerformed
 
+    
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
 
         dibujarSiguiente();
@@ -290,7 +292,10 @@ public class UI extends javax.swing.JFrame implements Serializable {
         cuerpo.setText("");
         tagCate.setSelectedIndex(3);
     }
-
+    
+    /**
+     
+     */
     public void save() {
 
         Articulo nuevo = new Articulo(titulo.getText(), cuerpo.getText());

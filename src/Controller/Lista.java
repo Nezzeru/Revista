@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 /**
- *
+ * Base para la lista donde se almacenaran los articulos
  * @author teodora
  */
 public class Lista implements Listable, Serializable {
@@ -31,7 +31,6 @@ public class Lista implements Listable, Serializable {
 
     /**
      * Añade un nuevo elemento a la lista
-     *
      * @param elemento elemento que se desea añadir
      */
     @Override
@@ -51,7 +50,6 @@ public class Lista implements Listable, Serializable {
 
     /**
      * Localiza un elemento en la lista
-     *
      * @param elemento que se dea encontrar
      * @return devuelve un elemento ubicado en la lista
      *
